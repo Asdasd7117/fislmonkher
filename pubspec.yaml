@@ -1,6 +1,16 @@
-name: crypto_analysis
-description: temp
-version: 1.0.0
+workflows:
+  build_flutter:
+    name: Build Flutter Project
 
-environment:
-  sdk: ">=3.0.0 <4.0.0"
+    environment:
+      flutter: stable
+
+    scripts:
+      - flutter --version
+      - flutter pub get
+
+      # إذا المشروع ناقص، أنشئه
+      - flutter create . --org btc --project-name crypto_analysis || true
+
+      - flutter pub get
+      - flutter build apk
