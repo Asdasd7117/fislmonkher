@@ -1,25 +1,15 @@
 workflows:
-build_flutter:
-name: Build Flutter Project
+build_flutter_apk:
+name: Build Flutter APK
 
 environment:
   flutter: stable
 
 scripts:
-  # عرض نسخة Flutter
   - flutter --version
-
-  # إنشاء مشروع Flutter إذا لم يكن موجود
-  - |
-    if [ ! -f pubspec.yaml ] || [ ! -d lib ]; then
-      flutter create . --org btc --project-name crypto_analysis
-    fi
-
-  # تحميل الحزم
   - flutter pub get
-
-  # بناء التطبيق
-  - flutter build apk --debug
+  - flutter clean
+  - flutter build apk --release
 
 artifacts:
-  - build/**/*
+  - build/app/outputs/flutter-apk/*.apk
