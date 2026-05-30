@@ -1,16 +1,13 @@
-workflows:
-  build_flutter:
-    name: Build Flutter Project
+name: crypto_analysis
+description: Crypto app
+version: 1.0.0
 
-    environment:
-      flutter: stable
+environment:
+  sdk: ">=3.0.0 <4.0.0"
 
-    scripts:
-      - flutter --version
-      - flutter pub get
+dependencies:
+  flutter:
+    sdk: flutter
 
-      # إذا المشروع ناقص، أنشئه
-      - flutter create . --org btc --project-name crypto_analysis || true
-
-      - flutter pub get
-      - flutter build apk
+flutter:
+  uses-material-design: true
