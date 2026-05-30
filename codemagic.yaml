@@ -1,15 +1,15 @@
 workflows:
-build_flutter_apk:
-name: Build Flutter APK
+  build_flutter_apk:
+    name: Build Flutter APK
 
-environment:
-  flutter: stable
+    environment:
+      flutter: stable
 
-scripts:
-  - flutter --version
-  - flutter pub get
-  - flutter clean
-  - flutter build apk --release
+    scripts:
+      - flutter --version
+      - flutter pub get
+      - flutter clean
+      - flutter build apk --release
 
-artifacts:
-  - build/app/outputs/flutter-apk/*.apk
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
