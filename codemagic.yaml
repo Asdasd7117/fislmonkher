@@ -1,20 +1,25 @@
 workflows:
-create_flutter_project:
-name: Create Flutter Project
+build_flutter:
+name: Build Flutter Project
 
 environment:
   flutter: stable
 
 scripts:
-  - flutter create . --project-name crypto_analysis --org btc
+  # عرض نسخة Flutter
+  - flutter --version
 
-  - git config --global user.email "codemagic-bot@example.com"
-  - git config --global user.name "Codemagic Bot"
+  # إنشاء مشروع Flutter إذا لم يكن موجود
+  - |
+    if [ ! -f pubspec.yaml ] || [ ! -d lib ]; then
+      flutter create . --org btc --project-name crypto_analysis
+    fi
 
-  - git add .
-  - git commit -m "Create Flutter project" || echo "Nothing to commit"
+  # تحميل الحزم
+  - flutter pub get
 
-  - git push https://$GITHUB_TOKEN@github.com/$CM_REPO_SLUG.git HEAD:main
+  # بناء التطبيق
+  - flutter build apk --debug
 
 artifacts:
-  - "**/*"
+  - build/**/*
