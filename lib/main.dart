@@ -12,9 +12,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: const Text("تحليل عملات رقمية")),
+        appBar: AppBar(
+          title: const Text("تطبيقي"),
+          centerTitle: true,
+        ),
         body: const Center(
-          child: Text("App is running"),
+          child: Text(
+            "أهلاً وسهلاً",
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ),
     );
