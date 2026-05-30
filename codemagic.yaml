@@ -1,0 +1,20 @@
+workflows:
+create_flutter_project:
+name: Create Flutter Project
+
+environment:
+  flutter: stable
+
+scripts:
+  - flutter create . --project-name crypto_analysis --org btc
+
+  - git config --global user.email "codemagic-bot@example.com"
+  - git config --global user.name "Codemagic Bot"
+
+  - git add .
+  - git commit -m "Create Flutter project" || echo "Nothing to commit"
+
+  - git push https://$GITHUB_TOKEN@github.com/$CM_REPO_SLUG.git HEAD:main
+
+artifacts:
+  - "**/*"
